@@ -11,3 +11,6 @@ asdfgbhnm,
 
 #Render link:
 https://legacy-landmarks.onrender.com/ping
+
+#Deployed link: 
+https://65d886bcc932c1e06c04dfa4--brilliant-peony-c7254b.netlify.app/d
