@@ -3,10 +3,10 @@ const router = express.Router();
 const axios = require('axios');
 const fs = require('fs');
 
-// CRUD operation request files directory
+
 const requestFilesDir = './docs.bruno/';
 
-// Helper function to read request files
+
 const readRequestFile = (fileName) => {
   const filePath = requestFilesDir + fileName;
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));

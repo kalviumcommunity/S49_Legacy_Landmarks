@@ -1,0 +1,121 @@
+[{
+    "id": 1,
+    "placeName": "Statue of Liberty",
+    "location": "New York, USA",
+    "yearBuilt": "1886",
+    "architect": "Gustave Eiffle",
+    "architecturalStyle": "Neoclassical",
+    "historicalSignificance": "Symbol of Freedom",
+    "currentUse": "Tourist Attraction"
+  },
+  
+  {
+    "id" : 2,
+    "placeName": "Machu Picchu",
+    "location": "Cusco, Peru",
+    "yearBuilt": "~1450",
+    "architect": "Unknown",
+    "architecturalStyle": "Inca",
+    "historicalSignificance": "Ancient city ruins",
+    "currentUse": "Tourist Attraction"
+  },
+  
+  {
+    "id": 3,
+    "placeName": "Colosseum",
+    "location": "Rome, Italy",
+    "yearBuilt": "70-80 AD",
+    "architect": "Unknown",
+    "architecturalStyle": "Roman",
+    "historicalSignificance": "Ancient amphitheater",
+    "currentUse": "Tourist Attraction"
+  },
+  
+  {
+    "id": 4,
+    "placeName": "Great Wall of China",
+    "location": "China",
+    "yearBuilt": "7th century BC - 17th century AD",
+    "architect": "Various",
+    "architecturalStyle": "Defensive fortification",
+    "historicalSignificance": "UNESCO World Heritage Site",
+    "currentUse": "Tourist Attraction"
+  },
+  
+  {
+    "id": 5,
+    "placeName": "Taj Mahal",
+    "location": "Agra, India",
+    "yearBuilt": "1632-1653",
+    "architect": "Ustad Ahmad Lahauri",
+    "architecturalStyle": "Mughal",
+    "historicalSignificance": "Mausoleum for Mumtaz Mahal",
+    "currentUse": "Tourist Attraction"
+  },
+  
+  {
+    "id": 6,
+    "placeName": "Petra",
+    "location": "Jordan",
+    "yearBuilt": "~312 BC",
+    "architect": "Unknown",
+    "architecturalStyle": "Nabatean",
+    "historicalSignificance": "Ancient city carved into cliffs",
+    "currentUse": "UNESCO World Heritage Site"
+  },
+  
+  {
+    "id": 7,
+    "placeName": "Acropolis of Athens",
+    "location": "Athens, Greece",
+    "yearBuilt": "~5th century BC",
+    "architect": "Various",
+    "architecturalStyle": "Ancient Greek",
+    "historicalSignificance": "Archaeological site",
+    "currentUse": "Tourist Attraction"
+  },
+  
+  {
+    "id": 8,
+    "placeName": "Stonehenge",
+    "location": "Wiltshire, England",
+    "yearBuilt": "~3000 BC",
+    "architect": "Unknown",
+    "architecturalStyle": "Prehistoric",
+    "historicalSignificance": "Neolithic monument",
+    "currentUse": "Archaeological site"
+  },
+  
+  {
+    "id": 9,
+    "placeName": "Angkor wat",
+    "location": "Siem Reap, Cambodia",
+    "yearBuilt": "12th century",
+    "architect": "Suryavarman II",
+    "architecturalStyle": "Khmer",
+    "historicalSignificance": "Hindu Temple Complex",
+    "currentUse": "UNESCO World Heritage Site"
+  },
+  
+  {
+    "id": 10,
+    "placeName": "Pyramids of Giza",
+    "location": "Giza, Egypt",
+    "yearBuilt": "~2580–2560 BC",
+    "architect": "Unknown",
+    "architecturalStyle": "Ancient Egyptian",
+    "historicalSignificance": "Royal tombs",
+    "currentUse": "Tourist Attraction"
+  },
+  
+  {
+    "id": 11,
+    "placeName": "Effile Tower",
+    "location": "Paris, France",
+    "yearBuilt": "1887-1889",
+    "architect": "Gustave Eiffle",
+    "architecturalStyle": "Iron",
+    "historicalSignificance": "Iconic landmark",
+    "currentUse": "Tourist Attraction"
+  }
+  ]

@@ -1,6 +1,5 @@
-// src/pages/HistoricalPlaces.jsx
-
 import React from 'react';
+import Data from './components/Data';
 
 const HistoricalPlaces = () => {
   return (
@@ -11,9 +10,7 @@ const HistoricalPlaces = () => {
       <main>
         <p>Welcome to our historical places exploration platform. Discover and learn about the fascinating historical landmarks around the world.</p>
       </main>
-      {/* <footer>
-        <p>&copy; 2024 Historical Places Explorer</p>
-      </footer> */}
+      <Data/>
     </div>
   );
 };
