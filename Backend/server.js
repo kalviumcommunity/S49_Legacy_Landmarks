@@ -17,9 +17,23 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     console.log('MongoDB URI:', process.env.MONGODB_URI);
   });
 
-  app.use(cors());
-  app.use(express.json());
+app.use(cors());
+app.use(express.json());
 
+app.post('/', (req, res) => {
+  const { placeName, location, yearBuilt, architect, architecturalStyle, historicalSignificance, currentUse } = req.body;
+  
+  console.log('Received data:');
+  console.log('Place Name:', placeName);
+  console.log('Location:', location);
+  console.log('Year Built:', yearBuilt);
+  console.log('Architect:', architect);
+  console.log('Architectural Style:', architecturalStyle);
+  console.log('Historical Significance:', historicalSignificance);
+  console.log('Current Use:', currentUse);
+
+  res.status(200).send('Data received successfully!');
+});
 
 app.get('/placeData', async (req, res) => {
   let x=await placeData.find();
