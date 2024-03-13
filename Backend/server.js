@@ -32,9 +32,12 @@ app.post('/addData', (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' }); 
     });
 
-  const { placeName, location, yearBuilt, architect, architecturalStyle, historicalSignificance, currentUse } = req.body;
+  const { userName, email, password, placeName, location, yearBuilt, architect, architecturalStyle, historicalSignificance, currentUse } = req.body;
   
   console.log('Received data:');
+  console.log('User Name:', userName);
+  console.log('Email:', email);
+  console.log('Password:', password);
   console.log('Place Name:', placeName);
   console.log('Location:', location);
   console.log('Year Built:', yearBuilt);

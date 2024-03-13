@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Form = () => {
+  const [userName, setuserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [placeName, setName] = useState('');
   const [location, setLocation] = useState('');
   const [yearBuilt, setyearBuilt] = useState('');
@@ -16,6 +19,9 @@ const Form = () => {
     e.preventDefault();
     axios
       .post('http://localhost:3000/addData', {
+        userName,
+        email,
+        password,
         placeName,
         location,
         yearBuilt,
@@ -35,21 +41,33 @@ const Form = () => {
     <div id="FormContainer">
       <div>
         <form id="Form" onSubmit={handleFormSubmit}>
-          <h2>Add Historical Place</h2>
+          <h2>Give your Details</h2>
           <div>
-            <input type="text" placeholder="name..." value={placeName} onChange={(e) => setName(e.target.value)} required />
+            <input type="text" placeholder="username..." value={userName} onChange={(e) => setuserName(e.target.value)} required />
           </div>
           <br />
           <div>
-            <textarea placeholder="location..." value={location} onChange={(e) => setLocation(e.target.value)} required />
+            <input type='email' placeholder="email..." value={email} onChange={(e) => setEmail(e.target.value)} required />
           </div>
           <br />
           <div>
-            <textarea placeholder="yearbuilt..." value={yearBuilt} onChange={(e) => setyearBuilt(e.target.value)} />
+            <input type='password' placeholder="password..." value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
           <br />
           <div>
-            <textarea placeholder="architect..." value={architect} onChange={(e) => setarchitect(e.target.value)} />
+            <input type="text" placeholder="placename..." value={placeName} onChange={(e) => setName(e.target.value)} required />
+          </div>
+          <br />
+          <div>
+            <input placeholder="location..." value={location} onChange={(e) => setLocation(e.target.value)} required />
+          </div>
+          <br />
+          <div>
+            <input placeholder="yearbuilt..." value={yearBuilt} onChange={(e) => setyearBuilt(e.target.value)} />
+          </div>
+          <br />
+          <div>
+            <input placeholder="architect..." value={architect} onChange={(e) => setarchitect(e.target.value)} />
           </div>
           <br />
           <div>
