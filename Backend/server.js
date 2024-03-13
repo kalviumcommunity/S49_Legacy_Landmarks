@@ -20,7 +20,18 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 app.use(cors());
 app.use(express.json());
 
-app.post('/', (req, res) => {
+app.post('/addData', (req, res) => {
+  
+  placeData.create(req.body)
+    .then(data => {
+      console.log('Data added to MongoDB:', data);
+      res.json(data); 
+    })
+    .catch(err => {
+      console.error('Error adding data to MongoDB:', err);
+      res.status(500).json({ error: 'Internal Server Error' }); 
+    });
+
   const { placeName, location, yearBuilt, architect, architecturalStyle, historicalSignificance, currentUse } = req.body;
   
   console.log('Received data:');
@@ -37,8 +48,9 @@ app.post('/', (req, res) => {
 
 app.get('/placeData', async (req, res) => {
   let x=await placeData.find();
+  res.send(x)
   console.log(x);
-  res.json(x);
+  return x;
 });
 
 
