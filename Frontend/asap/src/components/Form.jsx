@@ -15,7 +15,7 @@ const Form = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     axios
-      .post('http://localhost:3000/', {
+      .post('http://localhost:3000/addData', {
         placeName,
         location,
         yearBuilt,
@@ -26,9 +26,7 @@ const Form = () => {
       })
       .then((result) => {
         console.log(result);
-        // Handle response and navigation here
-        // For example, navigate to '/' after successful submission
-        // navigate('/');
+        
       })
       .catch((error) => console.error(error));
   };

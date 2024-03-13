@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-const placeSchema  = new mongoose.Schema({
-    id: Number,
+const placeSchema = new mongoose.Schema({
     placeName: String,
     location: String,
     yearBuilt: String,
@@ -9,7 +8,7 @@ const placeSchema  = new mongoose.Schema({
     architecturalStyle: String,
     historicalSignificance: String,
     currentUse: String
-})
+});
 
-const dataModel  = mongoose.model("legacyLandmarks", placeSchema); 
-module.exports = dataModel;
+const placeData = mongoose.model("placedatas", placeSchema); 
+module.exports = placeData;
