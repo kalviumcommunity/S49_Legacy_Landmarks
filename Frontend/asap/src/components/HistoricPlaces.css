@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif; 
+  background-image: url('https://img.freepik.com/premium-photo/abstract-grunge-background-fine-art-background-beige-brown-old-paper-parchment_213524-151.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+
+.container {
+  position: relative;
+  padding-top: 0; 
+}
+
+.headline-container {
+  background-color: black;
+  padding: 10px; 
+}
+
+header {
+  text-align: center;
+  font-weight: bolder;
+  margin-bottom: 20px;
+  margin-top: 0; 
+  color: #ffffff;
+}
+
+.content {
+  margin-bottom: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: x-large;
+}
+
+.data-container {
+  margin-left: 20px; 
+  color: #000000;
+  font-size: medium;
+  font-weight: bold;
+}
+
+  
+.buttons-container {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  margin-top: 25px;
+}
+
+
+.login-btn,
+.form-btn,
+.update-btn {
+  background-color: #0ec2ef;
+  color: #000000;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.login-btn:hover,
+.form-btn:hover,
+.update-btn:hover {
+  background-color: #ff0000;
+}

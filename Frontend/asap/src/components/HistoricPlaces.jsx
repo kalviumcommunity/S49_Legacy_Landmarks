@@ -1,43 +1,32 @@
-import React from 'react'
+import React from 'react';
 import Data from './Data';
-import { useEffect, useState } from 'react';
-import axios from 'axios'
-
+import { Link } from 'react-router-dom';
+import './HistoricPlaces.css';
 
 export default function HistoricPlaces() {
 
-  let [data, setData] = useState()
-
-  useEffect(()=>{
-    axios.get('http://localhost:3000/placeData')
-    .then(res => setData(res.data))
-    .catch(err => console.error(err))
-  })
-
   return (
-    <div>
+
     <div className="container">
-      <header>
-        <h1>Explore Historical Places</h1>
-      </header>
-      <main>
-        <p>Welcome to our historical places exploration platform. Discover and learn about the fascinating historical landmarks around the world.</p>
+      <div className="headline-container">
+        <header>
+          <h1>Explore Historical Places</h1>
+          <div className="buttons-container">
+            <Link to="/UserData" className="login-btn">Edit Details</Link>
+            <Link to="/Form" className="form-btn">Add Details</Link>
+            {/* <Link to="/Update" className="update-btn">Update</Link> */}
+            <Link to="/Login" className="login-btn">Login</Link>
+        </div>
+        </header>
+      </div>
+      <div className='content'>
+      <p>Welcome to our historical places exploration platform. Discover and learn about the fascinating historical landmarks around the world.</p>
+      </div>
+      <main className="main-content">
+        <div className='data-container'>
+          <Data />
+        </div>
       </main>
-      {/* <Data/> */}
-      <div>{data && data.map((item)=>{
-            return(
-                <div key={item.id}>
-                    <h1>{item.placeName}</h1>
-                    <p>{item.location}</p>
-                    <p>{item.yearBuilt}</p>
-                    <p>{item.architect}</p>
-                    <p>{item.architecturalStyle}</p>
-                    <p>{item.historicalSignificance}</p>
-                    <p>{item.currentUse}</p>
-                </div>
-            )
-        })}</div>
     </div>
-    </div>
-  )
+  );
 }
