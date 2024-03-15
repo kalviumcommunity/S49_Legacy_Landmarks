@@ -20,6 +20,47 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 app.use(cors());
 app.use(express.json());
 
+// app.delete('/placeData/:id', (req, res) => {
+//   const id = parseInt(req.params.id);
+//   const initialLength = entities.length;
+//   entities = entities.filter(entity => entity.id !== id);
+//   if (entities.length === initialLength) {
+//     return res.status(404).json({ message: 'Entity not found' });
+//   }
+//   res.json({ message: 'Entity deleted successfully' });
+// });
+
+app.delete('/placeData/:id', (req, res) => {
+  const id = req.params.id;
+  placeData.findByIdAndDelete(id)
+    .then(data => {
+      if (!data) {
+        return res.status(404).json({ message: 'Entity not found' });
+      }
+      res.json({ message: 'Entity deleted successfully' });
+    })
+    .catch(error => {
+      console.error('Error deleting data:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
+app.put('/updateData/:id', (req, res) => {
+  const id = req.params.id;
+  const updatedEntity = req.body;
+  placeData.findByIdAndUpdate(id, updatedEntity, { new: true })
+    .then(data => {
+      if (!data) {
+        return res.status(404).json({ message: 'Entity not found' });
+      }
+      res.json({ message: 'Entity updated successfully', data });
+    })
+    .catch(error => {
+      console.error('Error updating data:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
 app.post('/addData', (req, res) => {
   
   placeData.create(req.body)
@@ -32,12 +73,10 @@ app.post('/addData', (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' }); 
     });
 
-  const { userName, email, password, placeName, location, yearBuilt, architect, architecturalStyle, historicalSignificance, currentUse } = req.body;
+  const { placeName, location, yearBuilt, architect, architecturalStyle, historicalSignificance, currentUse } = req.body;
   
   console.log('Received data:');
-  console.log('User Name:', userName);
-  console.log('Email:', email);
-  console.log('Password:', password);
+
   console.log('Place Name:', placeName);
   console.log('Location:', location);
   console.log('Year Built:', yearBuilt);
@@ -52,7 +91,7 @@ app.post('/addData', (req, res) => {
 app.get('/placeData', async (req, res) => {
   let x=await placeData.find();
   res.send(x)
-  console.log(x);
+  // console.log(x);
   return x;
 });
 
