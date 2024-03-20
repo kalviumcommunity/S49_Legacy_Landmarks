@@ -35,6 +35,7 @@ export default function UserData() {
       <div>{data && data.map((item)=>{
             return(
                 <div key={item._id}>
+                  <Link to="/" className='home-btn'>Home</Link>
                     <h1>{item.placeName}</h1>
                     <p>{item.location}</p>
                     <p>{item.yearBuilt}</p>
