@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const placeData = require('./models/placeData.js');
 const signupData = require('./models/signup.js');
@@ -22,6 +23,45 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 app.use(cors());
 app.use(express.json());
 
+
+
+app.post('/auth', async (req, res) => {
+  const { error } = signupData.validate(req.body, {abortEarly: false});
+  if (error) {
+    return res.status(400).json({ error: error.details.map((e) => e.message) });
+  }
+
+  const { username, email, password } = req.body;
+  const existingUser = await signupData.findOne({ username, email });
+  if (existingUser) {
+    
+    return res.status(400).json({ error: 'User with this first name already exists' });
+  }
+  const newEntity = new signupData({ username, email, password });
+  try {
+      const savedEntity = await newEntity.save();
+       
+      const token = jwt.sign({ userId: savedEntity._id }, JWT_SECRET, { expiresIn: '1h' });
+      
+      return res.json({ token, savedEntity });
+    } catch (error) {
+      console.error("Error adding entity:", error);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+
+const verifyToken = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ message: 'Unauthorized' });
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) return res.status(403).json({ message: 'Invalid token' });
+
+    req.userId = decoded.userId;
+    next();
+  });
+};
 
 
 app.delete('/placeData/:id', (req, res) => {
@@ -146,22 +186,36 @@ const signupSchema = Joi.object({
   password: Joi.string().required()
 })
 
-app.post('/signup',  async (req,res) => {
-  const {error} = signupSchema.validate(req.body, {abortEarly: false})
-  if(error) {
-    return res.status(400).json({error: error.details.map((e)=> e.message)})
+
+app.post('/signup', async (req, res) => {
+console.log("calling...")
+  const { error } = signupData.validate(req.body, {abortEarly: false});
+  if (error) {
+    return res.status(400).json({ error: error.details.map((e) => e.message) });
   }
 
-  const{username, email, password}= req.body
-  const newEntity = new  signupData({username, email, password });
-  try{
-    const  savedUser = await newEntity.save();
-    return res.json({savedUser})
-  }catch(error){
-    console.log("Error in saving the data:", error);
-    return  res.status(500).json({error:"Internal server error"});
+  const { username, email, password } = req.body;
+  console.log( username, email, password)
+  const existingUser = await signupData.findOne({ username, email });
+  if (existingUser) {
+    return res.status(400).send({ message: 'User with this username or email already exists' });
   }
-})
+  const newEntity = new signupData({ username, email, password });
+
+
+  try {
+    const savedEntity = await newEntity.save();
+    console.log(savedEntity,"saved")
+       
+    const token = jwt.sign({ userId: savedEntity._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    console.log(token)
+      
+    return res.send({data:savedEntity,token:token}); 
+  } catch (error) {
+    console.error("Error adding entity:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 if (require.main === module) {
   app.listen(port, () => {
