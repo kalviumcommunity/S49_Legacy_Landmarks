@@ -20,7 +20,7 @@ function SignUp() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
       const response = await axios.post('http://localhost:3000/signup', formData, {
         headers: {
@@ -28,7 +28,9 @@ function SignUp() {
         },
       });
 
-      if (response.data.savedUser) { 
+      console.log(response.data,"from database")
+  
+      if (response.data.token) { 
         setSignedUp(true);
         setCookie('username', formData.username, { path: '/' });
         localStorage.setItem('user', formData.username);
@@ -37,12 +39,15 @@ function SignUp() {
         console.log('User signed up successfully', formData.username);
         console.log('cookie', userNameCookie);
         console.log('Local storage', userNameLocal);
+        console.log('Token:', response.data.token); 
         navigate('/');
       }
     } catch (error) {
+      alert(error.response.data.message)
       console.error('Error signing up user:', error);
     }
   };
+  
 
   const handleLogout = () => {
     setCookie('username', null, { path: '/' });
