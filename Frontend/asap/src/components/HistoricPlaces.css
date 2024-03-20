@@ -55,7 +55,8 @@ header {
 
 .login-btn,
 .form-btn,
-.update-btn {
+.update-btn,
+.signup-btn {
   background-color: #0ec2ef;
   color: #000000;
   border: none;
@@ -67,6 +68,7 @@ header {
 
 .login-btn:hover,
 .form-btn:hover,
-.update-btn:hover {
+.update-btn:hover,
+.signup-btn:hover {
   background-color: #ff0000;
 }

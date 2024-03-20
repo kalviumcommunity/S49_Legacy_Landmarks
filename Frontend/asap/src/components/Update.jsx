@@ -1,92 +1,70 @@
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Update = () => {
-
   const [placeName, setName] = useState('');
   const [location, setLocation] = useState('');
-  const [yearBuilt, setyearBuilt] = useState('');
+  const [yearBuilt, setYearBuilt] = useState('');
   const [architect, setArchitect] = useState('');
-  const [architecturalStyle, setarchitecturalStyle] = useState('');
-  const [historicalSignificance, sethistoricalSignificance] = useState('');
-  const [currentUse, setcurrentUse] = useState('');
-  const {id} = useParams();
+  const [architecturalStyle, setArchitecturalStyle] = useState('');
+  const [historicalSignificance, setHistoricalSignificance] = useState('');
+  const [currentUse, setCurrentUse] = useState('');
+
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/placeData`);
-        const filteredData = response.data.filter(item => item._id === id);
-        console.log(filteredData)
-        if (filteredData) {
-          setName(filteredData[0].placeName);
-          setLocation(filteredData[0].location);
-          setyearBuilt(filteredData[0].yearBuilt);
-          setArchitect(filteredData[0].architect);
-          setarchitecturalStyle(filteredData[0].architecturalStyle);
-          sethistoricalSignificance(filteredData[0].historicalSignificance);
-          setcurrentUse(filteredData[0].currentUse);
-        } else {
-          console.log("Data not found");
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchData();
-  }, [id]);
-  
-
   const handleFormUpdate = (e) => {
     e.preventDefault();
-    const formData = { placeName, location, yearBuilt, architect, architecturalStyle, historicalSignificance, currentUse }
-      axios.put(`http://localhost:3000/updateData/${id}`, formData)
-        .then(result => {
-          console.log(result);   
-          navigate('/UserData');
-        })
-        .catch(error => console.error(error));
-    }
-
-  
+    axios
+      .post('http://localhost:3000/updateData/:id', {
+        placeName,
+        location,
+        yearBuilt,
+        architect,
+        architecturalStyle,
+        historicalSignificance,
+        currentUse,
+      })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => console.error(error));
+  };
 
   return (
-    <div id="FormContainer">
+    <div id="UpdateFormContainer">
       <div>
-        <form id="Form" onSubmit={handleFormUpdate}>
-          <h2>Suggest A New Place</h2>
+        <form id="UpdateForm" onSubmit={handleFormUpdate}>
+          <h2>Update Place Details</h2>
           <div>
-            <input type="text" value={placeName} onChange={(e) => setName(e.target.value)} required />
+            <input type="text" placeholder="Update placename..." value={placeName} onChange={(e) => setName(e.target.value)} required />
           </div>
           <br />
           <div>
-            <input value={location} onChange={(e) => setLocation(e.target.value)} required />
+            <input placeholder="Update location..." value={location} onChange={(e) => setLocation(e.target.value)} required />
           </div>
           <br />
           <div>
-            <input value={yearBuilt} onChange={(e) => setyearBuilt(e.target.value)} />
+            <input placeholder="Update yearbuilt..." value={yearBuilt} onChange={(e) => setYearBuilt(e.target.value)} />
           </div>
           <br />
           <div>
-            <input value={architect} onChange={(e) => setArchitect(e.target.value)} required />
+            <input type="text" placeholder="Update architect..." value={architect} onChange={(e) => setArchitect(e.target.value)} required />
           </div>
           <br />
           <div>
-            <input value={architecturalStyle} onChange={(e) => setarchitecturalStyle(e.target.value)} required />
+            <input placeholder="Update archtecturalStyle..." value={architecturalStyle} onChange={(e) => setArchitecturalStyle(e.target.value)} required />
           </div>
           <br />
           <div>
-            <input value={historicalSignificance} onChange={(e) => sethistoricalSignificance(e.target.value)} />
+            <input placeholder="Update historicalSignificance..." value={historicalSignificance} onChange={(e) => setHistoricalSignificance(e.target.value)} />
           </div>
           <br />
           <div>
-            <input value={currentUse} onChange={(e) => setcurrentUse(e.target.value)} />
+            <input placeholder="Update cureentUse..." value={currentUse} onChange={(e) => setCurrentUse(e.target.value)} />
           </div>
           <br />
           <div>
-            <button type="submit" className='btn-btn-success'>Update</button>
+            <button type="submit" className="update-btn">Update</button>
           </div>
         </form>
       </div>
