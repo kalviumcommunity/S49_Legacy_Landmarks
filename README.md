@@ -2,4 +2,4 @@ ASAP project is about the best historic places to visit in the world and the nam
 
 #Render link: https://legacy-landmarks.onrender.com/placeData
 
-#Deployed link:  https://65d89f938238d700798f1cd0--classy-trifle-9fd477.netlify.app/
+#Deployed link: https://legacylandmark.netlify.app/
