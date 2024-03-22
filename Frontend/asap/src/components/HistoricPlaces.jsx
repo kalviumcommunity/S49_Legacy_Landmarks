@@ -17,6 +17,7 @@ export default function HistoricPlaces() {
             {/* <Link to="/Update" className="update-btn">Update</Link> */}
             <Link to="/Login" className="login-btn">Login</Link>
             <Link to="/SignUp" className="signup-btn">Sign In / Sign Out</Link>
+            <Link to="/createdby" className="createdby-btn">Createdby</Link>
         </div>
         </header>
       </div>

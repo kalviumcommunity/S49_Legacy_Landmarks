@@ -8,7 +8,8 @@ const placeSchema = new mongoose.Schema({
     architect: String,
     architecturalStyle: String,
     historicalSignificance: String,
-    currentUse: String
+    currentUse: String,
+    userlocal: String
 });
 
 const placeData = mongoose.model("placedatas", placeSchema); 
