@@ -10,7 +10,8 @@ function SignUp() {
     password: '',
   });
   const [signedUp, setSignedUp] = useState(false);
-  const [cookies, setCookie] = useCookies(['username']);
+  const userCookie = 'username'
+  const [cookies, setCookie] = useCookies([userCookie]);
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
@@ -31,10 +32,11 @@ function SignUp() {
       console.log(response.data,"from database")
   
       if (response.data.token) { 
+        const cookieValue = formData.username;
         setSignedUp(true);
-        setCookie('username', formData.username, { path: '/' });
+        setCookie(userCookie, cookieValue, { path: '/' });
         localStorage.setItem('user', formData.username);
-        const userNameCookie = cookies.username;
+        const userNameCookie = cookies[userCookie]
         const userNameLocal = localStorage.getItem('user');
         console.log('User signed up successfully', formData.username);
         console.log('cookie', userNameCookie);

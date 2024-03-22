@@ -92,16 +92,17 @@ const updateEntitySchema = Joi.object({
 
 app.put('/updateData/:id', (req, res) => {
 
-  const validateUpdateEntity = (req, res, next) => {
+  
     const { error } = updateEntitySchema.validate(req.body);
+    console.log(error,"error")
     if (error) {
       return res.status(400).json({ error: error.details[0].message });
     }
-    next();
-  };
+    
 
   const id = req.params.id;
   const updatedEntity = req.body;
+  console.log(updatedEntity);
   placeData.findByIdAndUpdate(id, updatedEntity, { new: true })
     .then(data => {
       if (!data) {
@@ -125,7 +126,8 @@ const addEntitySchema = Joi.object({
   architect: Joi.string().required(),
   architecturalStyle: Joi.string().required(),
   historicalSignificance: Joi.string().required(),
-  currentUse: Joi.string().required()
+  currentUse: Joi.string().required(), 
+  userlocal: Joi.string().required()
 });
 
 app.post('/addData', (req, res) => {
@@ -137,30 +139,12 @@ app.post('/addData', (req, res) => {
     }
     next();
   };
-  
-  placeData.create(req.body)
-    .then(data => {
-      console.log('Data added to MongoDB:', data);
-      res.json(data); 
-    })
-    .catch(err => {
-      console.error('Error adding data to MongoDB:', err);
-      res.status(500).json({ error: 'Internal Server Error' }); 
-    });
-
-  const { placeName, location, yearBuilt, architect, architecturalStyle, historicalSignificance, currentUse } = req.body;
-  
-  console.log('Received data:');
-
-  console.log('Place Name:', placeName);
-  console.log('Location:', location);
-  console.log('Year Built:', yearBuilt);
-  console.log('Architect:', architect);
-  console.log('Architectural Style:', architecturalStyle);
-  console.log('Historical Significance:', historicalSignificance);
-  console.log('Current Use:', currentUse);
-
-  res.status(200).send('Data received successfully!');
+  try{
+    let data = placeData.create(req.body)
+   res.send({message:"Data received successfully!", data})
+  }catch{
+    res.status(500).json({ error: 'Internal Server Error' }); 
+  }
 });
 
 app.get('/placeData', async (req, res) => {
