@@ -16,7 +16,7 @@ const Form = () => {
     e.preventDefault();
     console.log('userlocal inside',userlocal)
     axios
-      .post('http://localhost:3000/addData', {
+      .post('https://legacy-landmarks.onrender.com/addData', {
 
         placeName,
         location,

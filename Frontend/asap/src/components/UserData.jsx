@@ -11,7 +11,7 @@ export default function UserData() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/placeData');
+      const response = await axios.get('https://legacy-landmarks.onrender.com/placeData');
       setData(response.data);
     } catch (error) {
       console.log("Error:", error);
@@ -22,7 +22,7 @@ export default function UserData() {
     try {
       const confirmDelete = window.confirm('Are you sure you want to delete this entity?');
       if (confirmDelete) {
-        await axios.delete(`http://localhost:3000/placeData/${id}`);
+        await axios.delete(`https://legacy-landmarks.onrender.com/placeData/${id}`);
         setData(data.filter((item) => item._id !== id));
       }
     } catch (error) {

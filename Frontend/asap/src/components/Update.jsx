@@ -17,7 +17,7 @@ const Update = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/placeData`);
+        const response = await axios.get(`https://legacy-landmarks.onrender.com/placeData`);
         const filteredData = response.data.filter(item => item._id === id);
         console.log(filteredData)
         if (filteredData) {
@@ -41,7 +41,7 @@ const Update = () => {
   const handleFormUpdate = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:3000/updateData/${id}`, { 
+      .put(`https://legacy-landmarks.onrender.com/updateData/${id}`, { 
         placeName,  
         location,
         yearBuilt,

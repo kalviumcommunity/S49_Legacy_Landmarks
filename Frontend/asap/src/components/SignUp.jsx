@@ -23,7 +23,7 @@ function SignUp() {
     event.preventDefault();
   
     try {
-      const response = await axios.post('http://localhost:3000/signup', formData, {
+      const response = await axios.post('https://legacy-landmarks.onrender.com/signup', formData, {
         headers: {
           'Content-Type': 'application/json',
         },

@@ -9,7 +9,7 @@ function Createdby() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/signup");
+        const response = await axios.get("https://legacy-landmarks.onrender.com/signup");
         setsignupApi(response.data);
       } catch (error) {
         console.error("Error fetching login data:", error);
@@ -21,7 +21,7 @@ function Createdby() {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/placeData");
+        const response = await axios.get("https://legacy-landmarks.onrender.com/placeData");
         const reviews = response.data.filter(
           (review) => review.userlocal === selectedUser
         );

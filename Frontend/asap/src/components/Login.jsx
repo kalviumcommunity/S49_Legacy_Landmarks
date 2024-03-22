@@ -18,7 +18,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('http://localhost:3000/login', formData);
+          const response = await axios.post('https://legacy-landmarks.onrender.com/login', formData);
           console.log(response.data); 
         } catch (error) {
           console.error('Error submitting form:', error);
